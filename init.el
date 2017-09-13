@@ -16,10 +16,6 @@
 (toggle-scroll-bar -1)
 (blink-cursor-mode -1)
 
-(use-package beacon
-  :config
-  (beacon-mode +1))
-
 (use-package which-key
   :config
   (which-key-mode +1))
