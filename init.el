@@ -23,4 +23,13 @@
   :bind ("M-x" . counsel-M-x))
 (use-package smex) ; for counsel-M-x
 
+;; git
+(use-package magit)
 
+;; rust development
+(use-package rust-mode)
+(use-package racer)
+(use-package cargo
+  :config
+  (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  (setq compilation-ask-about-save nil))
