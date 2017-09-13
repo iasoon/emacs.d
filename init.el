@@ -17,10 +17,19 @@
 (blink-cursor-mode -1)
 
 ;; ivy mode
-(use-package ivy)
+(use-package ivy
+  :config
+  ;; fuzzy matching
+  (setq ivy-re-builders-alist
+	'((t . ivy--regex-fuzzy)))
+  ;; no initial inputs; fuzzy all the way
+  (setq ivy-initial-inputs-alist nil))
+
 (use-package swiper)
 (use-package counsel
   :bind ("M-x" . counsel-M-x))
+
+(use-package flx)  ; for fuzzy matching
 (use-package smex) ; for counsel-M-x
 
 ;; git
