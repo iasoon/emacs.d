@@ -35,6 +35,10 @@
 (setq backup-directory-alist
       '(("." . "~/.emacs.d/bak")))
 
+(use-package hungry-delete
+  :config (global-hungry-delete-mode)
+  :diminish (hungry-delete-mode))
+
 (use-package avy
   :config
   ;; dvorak home row keys
