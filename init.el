@@ -39,7 +39,8 @@
   :config
   ;; dvorak home row keys
   (setq avy-keys '(?a ?o ?e ?u ?h ?t ?n ?s))
-  :bind ("M-s" . avy-goto-char-2))
+  (setq avy-timeout-seconds 0.1)
+  :bind ("M-s" . avy-goto-char-timer))
 
 ;; ivy mode
 (use-package ivy
