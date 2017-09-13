@@ -21,6 +21,9 @@
       scroll-conservatively 100000
       scroll-preserve-screen-position 1)
 
+;; y/n answers
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; ivy mode
 (use-package ivy
   :config
