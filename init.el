@@ -16,6 +16,11 @@
 (toggle-scroll-bar -1)
 (blink-cursor-mode -1)
 
+;; better scrolling
+(setq scroll-margin 0
+      scroll-conservatively 100000
+      scroll-preserve-screen-position 1)
+
 ;; ivy mode
 (use-package ivy
   :config
