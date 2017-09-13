@@ -44,6 +44,10 @@
   ("C-a" . crux-move-beginning-of-line)
   ("C-k" . crux-smart-kill-line))
 
+(auto-fill-mode 1)
+(setq comment-auto-fill-only-comments 1)
+(setq-default fill-column 80)
+
 (use-package avy
   :config
   ;; dvorak home row keys
