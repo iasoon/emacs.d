@@ -39,6 +39,11 @@
   :config (global-hungry-delete-mode)
   :diminish (hungry-delete-mode))
 
+(use-package crux
+  :bind
+  ("C-a" . crux-move-beginning-of-line)
+  ("C-k" . crux-smart-kill-line))
+
 (use-package avy
   :config
   ;; dvorak home row keys
