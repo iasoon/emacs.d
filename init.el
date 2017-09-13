@@ -28,6 +28,19 @@
 ;; y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; Automatically update unmodified buffers whose files have changed.
+(global-auto-revert-mode 1)
+
+;; Don't save backups to current directory
+(setq backup-directory-alist
+      '(("." . "~/.emacs.d/bak")))
+
+(use-package avy
+  :config
+  ;; dvorak home row keys
+  (setq avy-keys '(?a ?o ?e ?u ?h ?t ?n ?s))
+  :bind ("M-s" . avy-goto-char-2))
+
 ;; ivy mode
 (use-package ivy
   :config
@@ -37,13 +50,17 @@
 	  (t . ivy--regex-fuzzy)))
   ;; no initial inputs; fuzzy all the way
   (setq ivy-initial-inputs-alist nil)
+  ;; dont list current and parent directory
+  (setq ivy-extra-directories nil)
   (ivy-mode)
   :diminish ivy-mode)
 
 (use-package swiper
   :bind ("C-s" . swiper))
 (use-package counsel
-  :bind ("M-x" . counsel-M-x))
+  :bind
+  ("M-x" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file))
 
 (use-package flx)  ; for fuzzy matching
 (use-package smex) ; for counsel-M-x
