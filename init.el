@@ -36,7 +36,9 @@
 	'((swiper . ivy--regex-plus)
 	  (t . ivy--regex-fuzzy)))
   ;; no initial inputs; fuzzy all the way
-  (setq ivy-initial-inputs-alist nil))
+  (setq ivy-initial-inputs-alist nil)
+  (ivy-mode)
+  :diminish ivy-mode)
 
 (use-package swiper
   :bind ("C-s" . swiper))
