@@ -33,11 +33,13 @@
   :config
   ;; fuzzy matching
   (setq ivy-re-builders-alist
-	'((t . ivy--regex-fuzzy)))
+	'((swiper . ivy--regex-plus)
+	  (t . ivy--regex-fuzzy)))
   ;; no initial inputs; fuzzy all the way
   (setq ivy-initial-inputs-alist nil))
 
-(use-package swiper)
+(use-package swiper
+  :bind ("C-s" . swiper))
 (use-package counsel
   :bind ("M-x" . counsel-M-x))
 
