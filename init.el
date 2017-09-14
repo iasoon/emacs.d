@@ -80,7 +80,9 @@
 (use-package smex) ; for counsel-M-x
 
 ;; git
-(use-package magit)
+(use-package magit
+  :bind
+  ("C-x g" . magit-status))
 
 ;; rust development
 (use-package rust-mode)
