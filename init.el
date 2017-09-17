@@ -21,15 +21,13 @@
 ;; Don't save backups to current directory
 (setq backup-directory-alist
       '(("." . "~/.emacs.d/bak")))
-;; git
-(use-package magit
-  :bind
-  ("C-x g" . magit-status))
+
 
 ;; core
 (require 'iasoon-general)
 (require 'iasoon-appearance)
 (require 'iasoon-ivy)
+(require 'iasoon-git)
 
 ;; languages
 (require 'iasoon-rust)
