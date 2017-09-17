@@ -1,3 +1,7 @@
+;;
+;; General settings
+;;
+
 ;; Claim back valuable real estate
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -14,5 +18,22 @@
 ;; Show line and column number in modeline
 (line-number-mode t)
 (column-number-mode t)
+
+
+;;
+;; Fringes
+;;
+
+(use-package fringe-helper)
+
+;; more subtle git-gutter marks
+(eval-after-load 'git-gutter-fringe
+  '(progn
+     (fringe-helper-define 'git-gutter-fr:added '(center repeated)
+       "XX......")
+     (fringe-helper-define 'git-gutter-fr:modified '(center repeated)
+       "XX......")
+     (fringe-helper-define 'git-gutter-fr:deleted '(center repeated)
+       "XX......")))
 
 (provide 'iasoon-appearance)
