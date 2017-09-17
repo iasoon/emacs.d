@@ -10,11 +10,10 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; ui
-(menu-bar-mode -1)
-(tool-bar-mode -1)
-(toggle-scroll-bar -1)
-(blink-cursor-mode -1)
+(setq config-dir (file-name-directory load-file-name))
+;; add core modules to load path
+(add-to-list 'load-path (expand-file-name "core" config-dir))
+
 
 (use-package which-key
   :config
@@ -35,6 +34,11 @@
 (setq backup-directory-alist
       '(("." . "~/.emacs.d/bak")))
 
+
+;; Tab indentation is a disease; a cancer of this planet.
+;; Turn it off and let's never talk about this default again.
+(set-default 'indent-tabs-mode nil)
+
 (use-package hungry-delete
   :config (global-hungry-delete-mode)
   :diminish (hungry-delete-mode))
@@ -52,7 +56,7 @@
   :config
   ;; dvorak home row keys
   (setq avy-keys '(?a ?o ?e ?u ?h ?t ?n ?s))
-  (setq avy-timeout-seconds 0.1)
+  (setq avy-timeout-seconds 0.2)
   :bind ("M-s" . avy-goto-char-timer))
 
 ;; ivy mode
@@ -97,3 +101,5 @@
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
   (setq compilation-ask-about-save nil)
   :diminish cargo-minor-mode)
+
+(require 'appearance)
