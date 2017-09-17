@@ -15,4 +15,4 @@
 (line-number-mode t)
 (column-number-mode t)
 
-(provide 'appearance)
+(provide 'iasoon-appearance)

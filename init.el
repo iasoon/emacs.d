@@ -17,31 +17,6 @@
 ;; Don't save backups to current directory
 (setq backup-directory-alist
       '(("." . "~/.emacs.d/bak")))
-
-;; ivy mode
-(use-package ivy
-  :config
-  ;; fuzzy matching
-  (setq ivy-re-builders-alist
-	'((swiper . ivy--regex-plus)
-	  (t . ivy--regex-fuzzy)))
-  ;; no initial inputs; fuzzy all the way
-  (setq ivy-initial-inputs-alist nil)
-  ;; dont list current and parent directory
-  (setq ivy-extra-directories nil)
-  (ivy-mode)
-  :diminish ivy-mode)
-
-(use-package swiper
-  :bind ("C-s" . swiper))
-(use-package counsel
-  :bind
-  ("M-x" . counsel-M-x)
-  ("C-x C-f" . counsel-find-file))
-
-(use-package flx)  ; for fuzzy matching
-(use-package smex) ; for counsel-M-x
-
 ;; git
 (use-package magit
   :bind
@@ -61,4 +36,6 @@
   (setq compilation-ask-about-save nil)
   :diminish cargo-minor-mode)
 
-(require 'appearance)
+(require 'iasoon-general)
+(require 'iasoon-appearance)
+(require 'iasoon-ivy)

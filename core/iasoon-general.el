@@ -41,4 +41,4 @@
   :bind ("M-s" . avy-goto-char-timer))
 
 
-(provide 'general)
+(provide 'iasoon-general)
