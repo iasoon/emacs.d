@@ -6,6 +6,11 @@
 ;; This is super annoying
 (blink-cursor-mode -1)
 
+;; pwetty colours!
+(use-package doom-themes
+  :config
+  (load-theme 'doom-one t))
+
 ;; Show line and column number in modeline
 (line-number-mode t)
 (column-number-mode t)
