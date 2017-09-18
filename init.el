@@ -30,4 +30,5 @@
 (require 'iasoon-git)
 
 ;; languages
+(require 'iasoon-c)
 (require 'iasoon-rust)
