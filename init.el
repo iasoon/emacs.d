@@ -32,3 +32,4 @@
 ;; languages
 (require 'iasoon-c)
 (require 'iasoon-rust)
+(require 'iasoon-javascript)
