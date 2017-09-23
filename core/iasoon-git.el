@@ -6,6 +6,7 @@
 ;; show git status in fringe
 (use-package git-gutter-fringe
   :config
-  (global-git-gutter-mode))
+  (global-git-gutter-mode)
+  :diminish git-gutter-mode)
 
 (provide 'iasoon-git)
