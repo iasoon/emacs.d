@@ -1,6 +1,7 @@
 (use-package which-key
   :config
-  (which-key-mode +1))
+  (which-key-mode +1)
+  :diminish which-key-mode)
 
 ;; better scrolling
 (setq scroll-margin 0
@@ -12,6 +13,7 @@
 
 ;; Automatically update unmodified buffers whose files have changed.
 (global-auto-revert-mode 1)
+(diminish 'auto-revert-mode)
 
 
 ;; Tab indentation is a disease; a cancer of this planet.
@@ -28,7 +30,6 @@
   ("C-k" . crux-smart-kill-line))
 
 ;; auto-fill comments
-(auto-fill-mode 1)
 (setq comment-auto-fill-only-comments 1)
 (setq-default fill-column 80)
 
