@@ -18,10 +18,9 @@
 ;; add language modules to load path
 (add-to-list 'load-path (expand-file-name "lang" config-dir))
 
-;; Don't save backups to current directory
-(setq backup-directory-alist
-      '(("." . "~/.emacs.d/bak")))
-
+;; no autosaves or backups
+(setq auto-save-default nil)
+(setq make-backup-files nil)
 
 ;; core
 (require 'iasoon-general)
