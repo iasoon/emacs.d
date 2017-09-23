@@ -28,6 +28,7 @@
 (require 'iasoon-appearance)
 (require 'iasoon-ivy)
 (require 'iasoon-git)
+(require 'iasoon-editor)
 
 ;; languages
 (require 'iasoon-c)
