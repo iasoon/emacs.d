@@ -41,5 +41,16 @@
   (setq avy-timeout-seconds 0.2)
   :bind ("M-s" . avy-goto-char-timer))
 
+(use-package projectile
+  :demand t
+  :config
+  (projectile-global-mode t)
+  (setq projectile-completion-system 'ivy)
+  :diminish projectile-mode)
+
+(use-package counsel-projectile
+  :config
+  (counsel-projectile-on))
+
 
 (provide 'iasoon-general)
