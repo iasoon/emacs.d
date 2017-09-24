@@ -52,8 +52,18 @@
   :diminish projectile-mode)
 
 (use-package counsel-projectile
+  :demand t
   :config
-  (counsel-projectile-on))
+  (counsel-projectile-on)
+  (global-set-key (kbd "C-c p s r") 'counsel-projectile-rg))
 
+(use-package company
+  :config
+  (global-company-mode)
+
+  (setq company-minimum-prefix-length 2
+        company-selection-wrap-around t
+        company-tooltip-align-annotations t
+        company-require-match nil))
 
 (provide 'iasoon-general)
