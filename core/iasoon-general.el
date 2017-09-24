@@ -15,6 +15,9 @@
 (global-auto-revert-mode 1)
 (diminish 'auto-revert-mode)
 
+;; please no sudden loud noises
+(setq ring-bell-function 'ignore)
+
 
 ;; Tab indentation is a disease; a cancer of this planet.
 ;; Turn it off and let's never talk about this default again.
