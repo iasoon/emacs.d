@@ -57,8 +57,10 @@
 (use-package counsel-projectile
   :demand t
   :config
-  (counsel-projectile-on)
-  (global-set-key (kbd "C-c p s r") 'counsel-projectile-rg))
+  :bind (:map projectile-mode-map
+              ("C-x f" . counsel-projectile-find-file)
+              ;; TODO: make this work without projectile
+              ("M-s" . counsel-projectile-rg)))
 
 (use-package company
   :config
