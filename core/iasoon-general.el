@@ -36,6 +36,9 @@
 (setq comment-auto-fill-only-comments 1)
 (setq-default fill-column 80)
 
+;; tramp
+(setq tramp-default-method "ssh")
+
 ;; avy
 (use-package avy
   :config
