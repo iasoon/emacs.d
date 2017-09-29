@@ -18,6 +18,10 @@
   (setq sp-autoskip-closing-pair 'always)
   (setq sp-hybrid-kill-entire-symbol nil)
 
+  (sp-pair "{" nil :post-handlers
+           '(("||\n[i]" "RET")
+             ("| " "SPC")))
+
   (show-smartparens-global-mode +1)
   (smartparens-global-mode +1)
   :diminish smartparens-mode)
