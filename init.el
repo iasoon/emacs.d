@@ -24,7 +24,7 @@
 ;; no autosaves or backups
 (setq auto-save-default nil)
 (setq make-backup-files nil)
-
+ 
 ;; core
 (require 'iasoon-general)
 (require 'iasoon-appearance)
@@ -36,3 +36,4 @@
 (require 'iasoon-c)
 (require 'iasoon-rust)
 (require 'iasoon-javascript)
+(require 'iasoon-python)
