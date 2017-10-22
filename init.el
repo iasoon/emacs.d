@@ -31,6 +31,7 @@
 (require 'iasoon-ivy)
 (require 'iasoon-git)
 (require 'iasoon-editor)
+(require 'iasoon-completion)
 
 ;; languages
 (require 'iasoon-c)

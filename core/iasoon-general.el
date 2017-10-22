@@ -18,7 +18,6 @@
 ;; please no sudden loud noises
 (setq ring-bell-function 'ignore)
 
-
 ;; Tab indentation is a disease; a cancer of this planet.
 ;; Turn it off and let's never talk about this default again.
 (set-default 'indent-tabs-mode nil)
@@ -52,6 +51,7 @@
   :config
   (projectile-global-mode t)
   (setq projectile-completion-system 'ivy)
+  (setq projectile-switch-project-action 'projectile-dired)
   :diminish projectile-mode)
 
 (use-package counsel-projectile
@@ -61,14 +61,5 @@
               ("C-x f" . counsel-projectile-find-file)
               ;; TODO: make this work without projectile
               ("M-s" . counsel-projectile-rg)))
-
-(use-package company
-  :config
-  (global-company-mode)
-
-  (setq company-minimum-prefix-length 2
-        company-selection-wrap-around t
-        company-tooltip-align-annotations t
-        company-require-match nil))
 
 (provide 'iasoon-general)
