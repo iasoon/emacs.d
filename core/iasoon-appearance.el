@@ -33,7 +33,10 @@
        "XX......")
      (fringe-helper-define 'git-gutter-fr:modified '(center repeated)
        "XX......")
-     (fringe-helper-define 'git-gutter-fr:deleted '(center repeated)
-       "XX......")))
+     (fringe-helper-define 'git-gutter-fr:deleted 'bottom
+       "X......."
+       "XX......"
+       "XXX....."
+       "XXXX....")))
 
 (provide 'iasoon-appearance)
