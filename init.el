@@ -13,7 +13,7 @@
 (setq config-dir (file-name-directory load-file-name))
 
 ;; save customizations
-(setq custom-file (expand-file-name "custome.el" config-dir))
+(setq custom-file (expand-file-name "custom.el" config-dir))
 
 ;; add core modules to load path
 (add-to-list 'load-path (expand-file-name "core" config-dir))
