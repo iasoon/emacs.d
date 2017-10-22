@@ -1,12 +1,6 @@
-(use-package rust-mode)
-
-
-(use-package racer
+(use-package rust-mode
   :config
-  (add-hook 'rust-mode-hook #'racer-mode)
-  (setq racer-rust-src-path "~/src/rust/src")
-  :diminish racer-mode)
-
+  (add-hook 'rust-mode-hook 'ycmd-mode))
 
 (use-package cargo
   :config
