@@ -24,7 +24,8 @@
 ;; no autosaves or backups
 (setq auto-save-default nil)
 (setq make-backup-files nil)
- 
+(setq create-lockfiles nil)
+
 ;; core
 (require 'iasoon-general)
 (require 'iasoon-appearance)
