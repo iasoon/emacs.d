@@ -4,10 +4,14 @@
   :config
   (global-company-mode)
 
-  (setq company-minimum-prefix-length 2
+  (setq company-minimum-prefix-length 1
         company-selection-wrap-around t
         company-tooltip-align-annotations t
-        company-require-match nil))
+        company-idle-delay 0.2
+        company-require-match nil)
+  (add-to-list 'company-frontends 'company-tng-frontend)
+  (define-key company-active-map (kbd "<tab>") 'company-select-next)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous))
 
 ;; ycmd
 
