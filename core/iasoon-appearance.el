@@ -2,6 +2,10 @@
 ;; General settings
 ;;
 
+;; Fonts
+(set-face-attribute 'default t :font "Fira Mono 12")
+
+
 ;; Claim back valuable real estate
 (menu-bar-mode -1)
 (tool-bar-mode -1)
