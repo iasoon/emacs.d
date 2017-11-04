@@ -22,6 +22,8 @@
   (use-package flx)
   ;; smex in counsel-M-x
   (use-package smex)
+  (setq counsel-rg-base-command
+        "rg -i -M 120 --no-heading --line-number --color never %s .")
   :bind
   ("M-x" . counsel-M-x)
   ("C-x C-f" . counsel-find-file))
