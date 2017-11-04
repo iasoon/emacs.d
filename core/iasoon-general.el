@@ -23,7 +23,10 @@
 (set-default 'indent-tabs-mode nil)
 
 (use-package hungry-delete
-  :config (global-hungry-delete-mode)
+  :config
+  (defadvice hungry-delete-backward (before sp-delete-pair-advice activate)
+    (save-match-data (sp-delete-pair (ad-get-arg 0))))
+  (global-hungry-delete-mode)
   :diminish (hungry-delete-mode))
 
 (use-package crux
