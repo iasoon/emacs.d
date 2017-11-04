@@ -33,6 +33,7 @@
 (require 'iasoon-git)
 (require 'iasoon-editor)
 (require 'iasoon-completion)
+(require 'iasoon-dired)
 
 ;; languages
 (require 'iasoon-c)
