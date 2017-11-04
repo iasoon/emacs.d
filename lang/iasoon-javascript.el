@@ -11,6 +11,7 @@
 (use-package tern
   :after js2-mode
   :config
+  (setq tern-command (append tern-command '("--no-port-file")))
   (add-hook 'js2-mode-hook (lambda () (tern-mode t))))
 
 (use-package company-tern
