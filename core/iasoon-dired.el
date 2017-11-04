@@ -1,3 +1,5 @@
+(require 'dired)
+
 (define-key dired-mode-map "f" 'counsel-file-jump)
 
 (use-package dired-ranger
