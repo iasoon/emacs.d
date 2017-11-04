@@ -3,7 +3,13 @@
 ;;
 
 ;; Fonts
-(set-face-attribute 'default t :font "Fira Mono 12")
+(defun set-font (font-str)
+  "Set the default font to the FONT-STR parameter."
+  (add-to-list 'default-frame-alist '(font-str))
+  (set-face-attribute 'default t :font font-str))
+
+(set-font "Fira Mono 12")
+
 
 
 ;; Claim back valuable real estate
