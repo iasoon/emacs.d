@@ -35,6 +35,7 @@
 (require 'iasoon-completion)
 (require 'iasoon-dired)
 (require 'iasoon-shell)
+(require 'iasoon-modeline)
 
 ;; languages
 (require 'iasoon-c)
