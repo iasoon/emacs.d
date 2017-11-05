@@ -34,6 +34,7 @@
 (require 'iasoon-editor)
 (require 'iasoon-completion)
 (require 'iasoon-dired)
+(require 'iasoon-shell)
 
 ;; languages
 (require 'iasoon-c)
