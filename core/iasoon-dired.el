@@ -1,4 +1,5 @@
 (require 'dired)
+(require 'dired-x)
 
 (define-key dired-mode-map "f" 'counsel-file-jump)
 
