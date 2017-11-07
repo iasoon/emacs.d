@@ -65,6 +65,6 @@
               ;; TODO: make this work without projectile
               ("M-s" . counsel-projectile-rg)))
 
-(bind-key "C-c c" 'ivy-switch-buffer)
+(bind-key* "C-c c" 'ivy-switch-buffer)
 
 (provide 'iasoon-general)

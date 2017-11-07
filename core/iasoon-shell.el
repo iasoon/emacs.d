@@ -21,6 +21,6 @@
 
 (add-hook 'shell-mode-hook 'track-shell-directory-procfs)
 
-(bind-key "C-c C-s" 'iasoon-shell)
+(bind-key* "C-c C-s" 'iasoon-shell)
 
 (provide 'iasoon-shell)
