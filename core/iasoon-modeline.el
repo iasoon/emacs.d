@@ -365,38 +365,12 @@ buffer where knowing the current project directory is important."
 
 ;;
 (def-modeline-segment! buffer-info
-  "Combined information about the current buffer, including the current working
-directory, the file name, and its state (modified, read-only or non-existent)."
+  "Current buffer name with current working directory"
   (let* ((all-the-icons-scale-factor 1.2)
          (modified-p (buffer-modified-p))
          (active (active))
-         (faces (if modified-p 'doom-modeline-buffer-modified)))
-    (concat (cond (buffer-read-only
-                   (concat (all-the-icons-octicon
-                            "lock"
-                            :face 'doom-modeline-warning
-                            :v-adjust -0.05)
-                           " "))
-                  (modified-p
-                   (concat (all-the-icons-faicon
-                            "floppy-o"
-                            :face 'doom-modeline-buffer-modified
-                            :v-adjust -0.0575)
-                           " "))
-                  ((and buffer-file-name
-                        (not (file-exists-p buffer-file-name)))
-                   (concat (all-the-icons-octicon
-                            "circle-slash"
-                            :face 'doom-modeline-urgent
-                            :v-adjust -0.05)
-                           " "))
-                  ((buffer-narrowed-p)
-                   (concat (all-the-icons-octicon
-                            "fold"
-                            :face 'doom-modeline-warning
-                            :v-adjust -0.05)
-                           " ")))
-            (when-let (dir-path (+doom-modeline--buffer-path))
+         (faces nil))
+    (concat (when-let (dir-path (+doom-modeline--buffer-path))
               (if-let (faces (or faces (if active 'doom-modeline-buffer-path)))
                   (propertize dir-path 'face `(:inherit ,faces))
                 dir-path))
