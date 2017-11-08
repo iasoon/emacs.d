@@ -12,6 +12,7 @@
   )
 
 (use-package smartparens
+  :demand
   :config
   (require 'smartparens-config)
   (setq sp-base-key-bindings 'paredit)
@@ -23,6 +24,7 @@
 
   (show-smartparens-global-mode +1)
   (smartparens-global-mode +1)
+  :bind (("C-M-k" . sp-kill-hybrid-sexp))
   :diminish smartparens-mode)
 
 (use-package expand-region
@@ -53,6 +55,7 @@
   ("s" mc/sort-regions)
   ("r" mc/mark-all-in-region-regexp :exit t)
   ("q" nil))
+
 
 
 (global-set-key (kbd "C-=") 'multiple-cursors-hydra/body)
