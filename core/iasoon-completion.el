@@ -10,6 +10,7 @@
         company-idle-delay 0.2
         company-require-match nil)
   (add-to-list 'company-frontends 'company-tng-frontend)
+  (company-tng-configure-default)
   (define-key company-active-map (kbd "<tab>") 'company-select-next)
   (define-key company-active-map (kbd "<backtab>") 'company-select-previous))
 
