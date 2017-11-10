@@ -93,17 +93,6 @@ modeline)))
   (propertize " " 'face 'variable-pitch)
   "TODO")
 
-(defvar +doom-modeline-buffer-file-name-style 'truncate-upto-project
-  "Determines the style used by `+doom-modeline-buffer-file-name'.
-
-Given ~/Projects/FOSS/emacs/lisp/comint.el
-truncate-upto-project => ~/P/F/emacs/lisp/comint.el
-truncate-upto-root => ~/P/F/e/lisp/comint.el
-truncate-all => ~/P/F/e/l/comint.el
-relative-from-project => emacs/lisp/comint.el
-relative-to-project => lisp/comint.el
-file-name => comint.el")
-
 ;; externs
 (defvar anzu--state nil)
 (defvar evil-mode nil)
@@ -217,92 +206,6 @@ active."
                                (if (eq idx len) "\"};" "\",\n")))))
       'xpm t :ascent 'center))))
 
-(defun +doom-modeline-buffer-file-name ()
-  "Propertized `buffer-file-name' based on `+doom-modeline-buffer-file-name-style'."
-  (propertize
-   (pcase +doom-modeline-buffer-file-name-style
-     ('truncate-upto-project (+doom-modeline--buffer-file-name 'shrink))
-     ('truncate-upto-root (+doom-modeline--buffer-file-name-truncate))
-     ('truncate-all (+doom-modeline--buffer-file-name-truncate t))
-     ('relative-to-project (+doom-modeline--buffer-file-name-relative))
-     ('relative-from-project (+doom-modeline--buffer-file-name-relative 'include-project))
-     ('file-name (propertize (file-name-nondirectory buffer-file-name)
-                             'face
-                             (let ((face (or (and (buffer-modified-p)
-                                                  'doom-modeline-buffer-modified)
-                                             (and (active)
-                                                  'doom-modeline-buffer-file))))
-                               (when face `(:inherit ,face))))))
-   'help-echo buffer-file-truename))
-
-(defun +doom-modeline--buffer-file-name-truncate (&optional truncate-tail)
-  "Propertized `buffer-file-name' that truncates every dir along path.
-If TRUNCATE-TAIL is t also truncate the parent directory of the file."
-  (let ((dirs (shrink-path-prompt (file-name-directory buffer-file-truename)))
-        (active (active)))
-    (if (null dirs)
-        (propertize "%b" 'face (if active 'doom-modeline-buffer-file))
-      (let ((modified-faces (if (buffer-modified-p) 'doom-modeline-buffer-modified)))
-        (let ((dirname (car dirs))
-              (basename (cdr dirs))
-              (dir-faces (or modified-faces (if active 'doom-modeline-project-root-dir)))
-              (file-faces (or modified-faces (if active 'doom-modeline-buffer-file))))
-          (concat (propertize (concat dirname
-                                      (if truncate-tail (substring basename 0 1) basename)
-                                      "/")
-                              'face (if dir-faces `(:inherit ,dir-faces)))
-                  (propertize (file-name-nondirectory buffer-file-name)
-                              'face (if file-faces `(:inherit ,file-faces)))))))))
-
-(defun +doom-modeline--buffer-file-name-relative (&optional include-project)
-  "Propertized `buffer-file-name' showing directories relative to project's root only."
-  (let ((root (projectile-project-root))
-        (active (active)))
-    (if (null root)
-        (propertize "%b" 'face (if active 'doom-modeline-buffer-file))
-      (let* ((modified-faces (if (buffer-modified-p) 'doom-modeline-buffer-modified))
-             (relative-dirs (file-relative-name (file-name-directory buffer-file-truename)
-                                                (if include-project (concat root "../") root)))
-             (relative-faces (or modified-faces (if active 'doom-modeline-buffer-path)))
-             (file-faces (or modified-faces (if active 'doom-modeline-buffer-file))))
-        (if (equal "./" relative-dirs) (setq relative-dirs ""))
-        (concat (propertize relative-dirs 'face (if relative-faces `(:inherit ,relative-faces)))
-                (propertize (file-name-nondirectory buffer-file-truename)
-                            'face (if file-faces `(:inherit ,file-faces))))))))
-
-(defun +doom-modeline--buffer-file-name (truncate-project-root-parent)
-  "Propertized `buffer-file-name'.
-If TRUNCATE-PROJECT-ROOT-PARENT is t space will be saved by truncating it down
-fish-shell style.
-
-Example:
-~/Projects/FOSS/emacs/lisp/comint.el => ~/P/F/emacs/lisp/comint.el"
-  (let* ((project-root (projectile-project-root))
-         (file-name-split (shrink-path-file-mixed project-root
-                                                  (file-name-directory buffer-file-truename)
-                                                  buffer-file-truename))
-         (active (active)))
-    (if (null file-name-split)
-        (propertize "%b" 'face (if active 'doom-modeline-buffer-file))
-      (pcase-let ((`(,root-path-parent ,project ,relative-path ,filename) file-name-split))
-        (let ((modified-faces (if (buffer-modified-p) 'doom-modeline-buffer-modified)))
-          (let ((sp-faces       (or modified-faces (if active 'font-lock-comment-face)))
-                (project-faces  (or modified-faces (if active 'font-lock-string-face)))
-                (relative-faces (or modified-faces (if active 'doom-modeline-buffer-path)))
-                (file-faces     (or modified-faces (if active 'doom-modeline-buffer-file))))
-            (let ((sp-props       `(,@(if sp-faces       `(:inherit ,sp-faces))      ,@(if active '(:weight bold))))
-                  (project-props  `(,@(if project-faces  `(:inherit ,project-faces)) ,@(if active '(:weight bold))))
-                  (relative-props `(,@(if relative-faces `(:inherit ,relative-faces))))
-                  (file-props     `(,@(if file-faces     `(:inherit ,file-faces)))))
-              (concat (propertize (if truncate-project-root-parent
-                                      root-path-parent
-                                    (abbreviate-file-name project-root))
-                                  'face sp-props)
-                      (propertize (concat project "/") 'face project-props)
-                      (if relative-path (propertize relative-path 'face relative-props))
-                      (propertize filename 'face file-props)))))))))
-
-
 ;;
 ;; Segments
 ;;
@@ -320,48 +223,13 @@ buffer where knowing the current project directory is important."
             (propertize (concat " " (abbreviate-file-name default-directory))
                         'face face))))
 
-;;
-(def-modeline-segment! buffer-info
-  "Combined information about the current buffer, including the current working
-directory, the file name, and its state (modified, read-only or non-existent)."
-  (let ((all-the-icons-scale-factor 1.2))
-    (concat (cond (buffer-read-only
-                   (concat (all-the-icons-octicon
-                            "lock"
-                            :face 'doom-modeline-warning
-                            :v-adjust -0.05)
-                           " "))
-                  ((buffer-modified-p)
-                   (concat (all-the-icons-faicon
-                            "floppy-o"
-                            :face 'doom-modeline-buffer-modified
-                            :v-adjust -0.0575)
-                           " "))
-                  ((and buffer-file-name
-                        (not (file-exists-p buffer-file-name)))
-                   (concat (all-the-icons-octicon
-                            "circle-slash"
-                            :face 'doom-modeline-urgent
-                            :v-adjust -0.05)
-                           " "))
-                  ((buffer-narrowed-p)
-                   (concat (all-the-icons-octicon
-                            "fold"
-                            :face 'doom-modeline-warning
-                            :v-adjust -0.05)
-                           " ")))
-            (if buffer-file-name
-                (+doom-modeline-buffer-file-name)
-              "%b"))))
 
 ;;
-(def-modeline-segment! buffer-info-simple
+(def-modeline-segment! buffer-name
   "Display only the current buffer's name, but with fontification."
   (propertize
    "%b"
-   'face (cond ((and buffer-file-name (buffer-modified-p))
-                'doom-modeline-buffer-modified)
-               ((active) 'doom-modeline-buffer-file))))
+   'face (if (active) 'doom-modeline-buffer-file)))
 
 ;;
 (def-modeline-segment! buffer-encoding
@@ -595,8 +463,8 @@ Returns \"\" to not break --no-window-system."
 ;;
 
 (def-modeline! main
-  (bar matches " " buffer-info "  %l:%c %p  " selection-info)
-  (buffer-encoding major-mode vcs flycheck))
+  (bar matches " " buffer-name "  %l:%c %p  " selection-info)
+  (buffer-encoding major-mode " "))
 
 (def-modeline! minimal
   (bar matches " " buffer-info)
