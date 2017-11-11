@@ -28,7 +28,7 @@
   :diminish smartparens-mode)
 
 (use-package expand-region
-  :bind ("C-r" . er/expand-region))
+  :bind ("C-m" . er/expand-region))
 
 (use-package hydra)
 
