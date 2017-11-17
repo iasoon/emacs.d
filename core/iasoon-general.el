@@ -47,7 +47,7 @@
   ;; dvorak home row keys
   (setq avy-keys '(?a ?o ?e ?u ?h ?t ?n ?s))
   (setq avy-timeout-seconds 0.4)
-  :bind ("M-s" . avy-goto-char-timer))
+  :bind ("M-j" . avy-goto-char-timer))
 
 (use-package projectile
   :demand t
