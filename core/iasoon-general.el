@@ -67,4 +67,11 @@
 
 (bind-key* "C-c c" 'ivy-switch-buffer)
 
+;; for smooth mouse scrolling
+(setq scroll-step 1)
+(setq scroll-conservatively 1000)
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+(setq mouse-wheel-progressive-speed nil)
+(setq mouse-wheel-follow-mouse t)
+
 (provide 'iasoon-general)
