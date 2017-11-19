@@ -3,14 +3,7 @@
 ;;
 
 ;; Fonts
-(defun set-font (font-str)
-  "Set the default font to the FONT-STR parameter."
-  (add-to-list 'default-frame-alist '(font-str))
-  (set-face-attribute 'default t :font font-str))
-
-(set-font "Fira Mono 12")
-
-
+(set-frame-font "Droid Sans Mono 10" nil t)
 
 ;; Claim back valuable real estate
 (menu-bar-mode -1)
