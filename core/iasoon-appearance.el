@@ -18,11 +18,6 @@
   :config
   (load-theme 'doom-one t))
 
-;; Show line and column number in modeline
-(line-number-mode t)
-(column-number-mode t)
-
-
 ;;
 ;; Fringes
 ;;
