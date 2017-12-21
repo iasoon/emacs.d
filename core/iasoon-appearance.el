@@ -3,7 +3,8 @@
 ;;
 
 ;; Fonts
-(set-frame-font "Droid Sans Mono 10" nil t)
+(set-frame-font "Source Code Pro 11" nil t)
+(set-face-bold-p 'bold nil)
 
 ;; Claim back valuable real estate
 (menu-bar-mode -1)
@@ -13,10 +14,11 @@
 ;; This is super annoying
 (blink-cursor-mode -1)
 
-;; pwetty colours!
-(use-package doom-themes
+(use-package nord-theme
   :config
-  (load-theme 'doom-one t))
+  (setq nord-comment-brightness 15)
+  (setq nord-uniform-mode-lines t)
+  (load-theme 'nord t))
 
 ;;
 ;; Fringes
