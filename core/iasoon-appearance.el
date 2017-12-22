@@ -61,10 +61,21 @@
   (nord11 (if (display-graphic-p) "#BF616A" "red"))
   (nord12 (if (display-graphic-p) "#D08770" "brightyellow"))
   (nord13 (if (display-graphic-p) "#EBCB8B" "yellow"))
-  (nord14 (if (display-graphic-p) "#A3BE8C" "green")))
+  (nord14 (if (display-graphic-p) "#A3BE8C" "green"))
+  (nord15 (if (display-graphic-p) "#B48EAD" "magenta")))
+
   (custom-theme-set-faces
    'nord
+   ;; dired
    `(dired-directory ((,class (:foreground ,nord9))))
-   `(dired-marked ((,class (:foreground ,nord13))))))
+   `(dired-marked ((,class (:foreground ,nord13))))
+
+   ;; ivy
+   `(ivy-current-match ((t (:background ,nord2))))
+   `(ivy-minibuffer-match-face-1 ((t (:background ,nord0))))
+   `(ivy-minibuffer-match-face-2 ((t (:foreground ,nord7))))
+   `(ivy-minibuffer-match-face-3 ((t (:foreground ,nord8))))
+   `(ivy-minibuffer-match-face-4 ((t (:foreground ,nord9))))
+   ))
 
 (provide 'iasoon-appearance)
