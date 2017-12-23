@@ -67,6 +67,10 @@
 
 (bind-key* "C-c c" 'ivy-switch-buffer)
 
+(use-package ws-butler
+  :config
+  (ws-butler-global-mode))
+
 ;; for smooth mouse scrolling
 (setq scroll-step 1)
 (setq scroll-conservatively 1000)
