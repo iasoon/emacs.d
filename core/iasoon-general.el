@@ -46,7 +46,13 @@
   :config
   ;; dvorak home row keys
   (setq avy-keys '(?a ?o ?e ?u ?h ?t ?n ?s))
+  ;; timeout for avy-timer
   (setq avy-timeout-seconds 0.4)
+  ;; keep to current window
+  (setq avy-all-windows nil)
+  ;; show entire path on top of match
+  (setq avy-style 'at-full)
+
   :bind ("M-j" . avy-goto-char-timer))
 
 (use-package projectile
