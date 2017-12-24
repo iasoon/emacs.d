@@ -82,6 +82,13 @@
    `(hydra-face-teal ((t (:foreground ,nord8))))
    `(hydra-face-red ((t (:foreground ,nord11))))
    `(hydra-face-pink ((t (:foreground ,nord15))))
+
+   ;; avy
+   `(avy-lead-face ((t (:foreground ,nord5 :background ,nord10))))
+   `(avy-lead-face-0 ((t (:inherit avy-lead-face))))
+   `(avy-lead-face-1 ((t (:inherit avy-lead-face))))
+   `(avy-lead-face-2 ((t (:inherit avy-lead-face))))
+   `(avy-lead-face-3 ((t (:inherit avy-lead-face))))
    ))
 
 (provide 'iasoon-appearance)
