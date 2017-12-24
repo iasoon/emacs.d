@@ -15,4 +15,11 @@
               ("c" . dired-ranger-copy)
               ("y" . dired-ranger-paste)))
 
+(use-package peep-dired
+  :bind (:map dired-mode-map
+        ("P" . peep-dired)
+        :map peep-dired-mode-map
+        ("p" . peep-dired-prev-file)
+        ("n" . peep-dired-next-file)))
+
 (provide 'iasoon-dired)
