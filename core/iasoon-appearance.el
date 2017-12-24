@@ -76,6 +76,12 @@
    `(ivy-minibuffer-match-face-2 ((t (:foreground ,nord7))))
    `(ivy-minibuffer-match-face-3 ((t (:foreground ,nord8))))
    `(ivy-minibuffer-match-face-4 ((t (:foreground ,nord9))))
+
+   ;; hydra
+   `(hydra-face-blue ((t (:foreground ,nord10))))
+   `(hydra-face-teal ((t (:foreground ,nord8))))
+   `(hydra-face-red ((t (:foreground ,nord11))))
+   `(hydra-face-pink ((t (:foreground ,nord15))))
    ))
 
 (provide 'iasoon-appearance)
