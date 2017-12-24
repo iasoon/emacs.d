@@ -36,6 +36,7 @@
 (require 'iasoon-dired)
 (require 'iasoon-shell)
 (require 'iasoon-modeline)
+(require 'iasoon-indentedit)
 
 ;; languages
 (require 'iasoon-c)
