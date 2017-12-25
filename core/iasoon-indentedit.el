@@ -10,25 +10,6 @@
              (or (indentedit-line-blank-p)
                (> (current-indentation) pos-indent))))))
 
-(defun indentedit--opening-sexp ()
-  (save-excursion
-    (let ( (beg (line-beginning-position))
-           (end (line-end-position))
-           (sexp t))
-      (move-beginning-of-line nil)
-      (while (progn
-               (setq sexp (sp-get-thing))
-               (when sexp (goto-char (sp-get sexp :end)))
-               (and sexp (>= end (point)))))
-      (when (<= beg (sp-get sexp :beg) end) sexp))))
-
-(defun indentedit--forward-line ()
-  (interactive)
-  (if-let ((sexp (indentedit--opening-sexp)))
-    (goto-char (sp-get sexp :end))
-    (let ((ok (zerop (forward-line 1))))
-      (when ok (back-to-indentation))
-      ok)))
 
 (defun indentedit-next ()
   (interactive)
@@ -52,5 +33,29 @@
             (define-key map (kbd "M-n") 'indentedit-next)
             (define-key map (kbd "M-p") 'indentedit-prev)
             map))
+
+
+;; TOOD
+;; The idea here is to consider a line with a hanging sexp a single line.
+;; I suspect this will be well-suited for editing c-style languages.
+(defun indentedit--opening-sexp ()
+  (save-excursion
+    (let ( (beg (line-beginning-position))
+           (end (line-end-position))
+           (sexp t))
+      (move-beginning-of-line nil)
+      (while (progn
+               (setq sexp (sp-get-thing))
+               (when sexp (goto-char (sp-get sexp :end)))
+               (and sexp (>= end (point)))))
+      (when (<= beg (sp-get sexp :beg) end) sexp))))
+
+(defun indentedit--forward-line ()
+  (interactive)
+  (if-let ((sexp (indentedit--opening-sexp)))
+    (goto-char (sp-get sexp :end))
+    (let ((ok (zerop (forward-line 1))))
+      (when ok (back-to-indentation))
+      ok)))
 
 (provide 'iasoon-indentedit)
