@@ -87,6 +87,11 @@
    `(avy-lead-face-1 ((t (:inherit avy-lead-face))))
    `(avy-lead-face-2 ((t (:inherit avy-lead-face))))
    `(avy-lead-face-3 ((t (:inherit avy-lead-face))))
+
+   ;; git-gutter
+   `(git-gutter-fr:added ((t (:foreground ,nord14))))
+   `(git-gutter-fr:modified ((t (:foreground ,nord13))))
+   `(git-gutter-fr:deleted ((t (:foreground ,nord11))))
    ))
 
 (provide 'iasoon-appearance)
