@@ -4,28 +4,21 @@
     (eolp)))
 
 (defun indentedit-forward (&optional direction)
-  (let ((direction (or direction (direction)))
+  (let ((direction (or direction 1))
         (pos-indent (current-indentation)))
     (while (and (zerop (forward-line direction))
              (or (indentedit-line-blank-p)
-               (> (current-indentation) pos-indent))))))
-
+               (> (current-indentation) pos-indent))))
+    (back-to-indentation)))
 
 (defun indentedit-next ()
   (interactive)
-  (let ((pos-indent (current-indentation)))
-    (while (and (zerop (forward-line))
-             (or (indentedit-line-blank-p)
-               (> (current-indentation) pos-indent))))
-    (back-to-indentation)))
+  (indentedit-forward 1))
 
 (defun indentedit-prev ()
   (interactive)
-  (let ((pos-indent (current-indentation)))
-    (while (and (zerop (forward-line -1))
-             (or (indentedit-line-blank-p)
-               (> (current-indentation) pos-indent))))
-    (back-to-indentation)))
+  (indentedit-forward -1))
+
 
 (define-minor-mode indentedit-mode
   :lighter "indentedit"
