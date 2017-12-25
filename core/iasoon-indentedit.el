@@ -19,12 +19,21 @@
   (interactive)
   (indentedit-forward -1))
 
+(defun indentedit-up ()
+  (interactive)
+  (let ((pos-indent (current-indentation)))
+    (while (and (zerop (forward-line -1))
+             (or (indentedit-line-blank-p)
+               (>= (current-indentation) pos-indent))))
+    (back-to-indentation)))
+
 
 (define-minor-mode indentedit-mode
   :lighter "indentedit"
   :keymap (let ((map (make-sparse-keymap)))
             (define-key map (kbd "M-n") 'indentedit-next)
             (define-key map (kbd "M-p") 'indentedit-prev)
+            (define-key map (kbd "M-u") 'indentedit-up)
             map))
 
 
