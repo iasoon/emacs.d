@@ -64,10 +64,8 @@
   (nord14 (if (display-graphic-p) "#A3BE8C" "green"))
   (nord15 (if (display-graphic-p) "#B48EAD" "magenta")))
 
-  (custom-theme-set-faces
-   'nord
+  (custom-set-faces
    ;; dired
-   `(dired-directory ((,class (:foreground ,nord9))))
    `(dired-marked ((,class (:foreground ,nord13))))
 
    ;; ivy
