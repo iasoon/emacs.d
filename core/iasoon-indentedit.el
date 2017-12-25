@@ -27,6 +27,17 @@
                (>= (current-indentation) pos-indent))))
     (back-to-indentation)))
 
+(defun indentedit-mark ()
+  (interactive)
+  (set-mark (line-beginning-position))
+  ;; move to next item, which is past the current one
+  (indentedit-forward 1)
+  ;; step back, skipping empty
+  (while (and (zerop (forward-line -1))
+              (indentedit-line-blank-p)))
+  (move-end-of-line nil))
+
+
 
 (define-minor-mode indentedit-mode
   :lighter "indentedit"
@@ -34,7 +45,9 @@
             (define-key map (kbd "M-n") 'indentedit-next)
             (define-key map (kbd "M-p") 'indentedit-prev)
             (define-key map (kbd "M-u") 'indentedit-up)
+            (define-key map (kbd "M-m") 'indentedit-mark)
             map))
+
 
 
 ;; TOOD
