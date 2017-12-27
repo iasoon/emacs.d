@@ -1,6 +1,6 @@
 ;; Open project shell or global shell
 (defun iasoon-shell ()
-1  (interactive)
+  (interactive)
   (if (projectile-project-p)
       (projectile-run-shell)
     (shell)))
