@@ -43,3 +43,4 @@
 (require 'iasoon-rust)
 (require 'iasoon-javascript)
 (require 'iasoon-python)
+(require 'iasoon-typescript)
