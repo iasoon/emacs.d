@@ -8,7 +8,9 @@
         company-selection-wrap-around t
         company-tooltip-align-annotations t
         company-idle-delay 0.2
-        company-require-match nil)
+        company-require-match nil
+        ;; align annotations to right hand side
+        company-tooltip-align-annotations t)
   (add-to-list 'company-frontends 'company-tng-frontend)
   (company-tng-configure-default)
   (define-key company-active-map (kbd "<tab>") 'company-select-next)
