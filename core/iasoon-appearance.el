@@ -92,6 +92,10 @@
    `(git-gutter-fr:added ((t (:foreground ,nord14))))
    `(git-gutter-fr:modified ((t (:foreground ,nord13))))
    `(git-gutter-fr:deleted ((t (:foreground ,nord11))))
+
+   ;; modeline
+   `(mode-line ((t (:foreground ,nord4))))
+   `(doom-modeline-buffer-major-mode ((t (:foreground ,nord6 :bold t))))
    ))
 
 (provide 'iasoon-appearance)
