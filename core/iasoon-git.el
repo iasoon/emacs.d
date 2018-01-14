@@ -12,6 +12,7 @@
 (use-package git-gutter-fringe
   :config
   (global-git-gutter-mode)
+  (add-hook 'magit-post-refresh-hook #'git-gutter:update-all-windows)
   :diminish git-gutter-mode)
 
 (provide 'iasoon-git)
