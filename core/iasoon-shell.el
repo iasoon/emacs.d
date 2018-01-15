@@ -21,6 +21,24 @@
 
 (add-hook 'shell-mode-hook 'track-shell-directory-procfs)
 
+
+;; TODO maybe make this a general utility function
+(defun override-local-minor-mode-key (mode key def)
+  "Override a minor mode keybinding for the current buffer"
+  (let* ((oldmap (cdr (assoc mode minor-mode-map-alist)))
+         (newmap (or (cdr (assoc mode minor-mode-overriding-map-alist))
+                     (let ((map (make-sparse-keymap)))
+                       (set-keymap-parent map oldmap)
+                       (push `(,mode . ,map) minor-mode-overriding-map-alist)
+                       map))))
+    (define-key newmap key def)))
+
+
+(defun iasoon-shell-override-tab ()
+  (override-local-minor-mode-key 'company-mode (kbd "<tab>") 'company-complete))
+
+(add-hook 'shell-mode-hook 'iasoon-shell-override-tab)
+
 (bind-key* "C-c C-s" 'iasoon-shell)
 
 (provide 'iasoon-shell)
