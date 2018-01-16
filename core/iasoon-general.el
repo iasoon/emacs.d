@@ -11,6 +11,9 @@
 ;; y/n answers
 (fset 'yes-or-no-p 'y-or-n-p)
 
+;; don't ask for confirmation when visiting a nonexistent file
+(setq confirm-nonexistent-file-or-buffer nil)
+
 ;; Automatically update unmodified buffers whose files have changed.
 (global-auto-revert-mode 1)
 (diminish 'auto-revert-mode)
