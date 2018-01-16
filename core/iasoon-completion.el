@@ -2,7 +2,7 @@
 
 (use-package company
   :config
-  (global-company-mode)
+  (global-company-mode 1)
 
   (setq company-minimum-prefix-length 1
         company-selection-wrap-around t
@@ -11,6 +11,7 @@
         company-require-match nil
         ;; align annotations to right hand side
         company-tooltip-align-annotations t)
+
   (add-to-list 'company-frontends 'company-tng-frontend)
   (company-tng-configure-default)
   (define-key company-active-map (kbd "<tab>") 'company-select-next)
@@ -30,8 +31,7 @@
     (let ((completion-at-point-functions completion-at-point-functions-saved))
       (company-complete-common)))
 
-  :bind (:map company-mode-map
-         ("<tab>" . company-indent-for-tab-command)))
+  :bind ("TAB" . company-indent-for-tab-command))
 
 ;; ycmd
 (use-package ycmd
