@@ -14,6 +14,11 @@
 ;; don't ask for confirmation when visiting a nonexistent file
 (setq confirm-nonexistent-file-or-buffer nil)
 
+;; don't ask for confirmation when killing a buffer with an attached process
+;; (e.g. a shell buffer)
+(setq kill-buffer-query-functions
+      (delq 'process-kill-buffer-query-function kill-buffer-query-functions))
+
 ;; Automatically update unmodified buffers whose files have changed.
 (global-auto-revert-mode 1)
 (diminish 'auto-revert-mode)
