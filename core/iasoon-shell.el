@@ -1,3 +1,5 @@
+(require 'shell)
+
 ;; Open project shell or global shell
 (defun iasoon-shell ()
   (interactive)
@@ -23,6 +25,8 @@
 
 
 ;; TODO maybe make this a general utility function
+;; TODO this is no longer neccesary here, but I'm leaving this here because
+;; it might prove useful later on.
 (defun override-local-minor-mode-key (mode key def)
   "Override a minor mode keybinding for the current buffer"
   (let* ((oldmap (cdr (assoc mode minor-mode-map-alist)))
@@ -34,11 +38,8 @@
     (define-key newmap key def)))
 
 
-(defun iasoon-shell-override-tab ()
-  (override-local-minor-mode-key 'company-mode (kbd "<tab>") 'company-complete))
-
-(add-hook 'shell-mode-hook 'iasoon-shell-override-tab)
-
 (bind-key* "C-c C-s" 'iasoon-shell)
+
+(bind-key "TAB" 'company-complete-common shell-mode-map)
 
 (provide 'iasoon-shell)
